@@ -1,4 +1,4 @@
-import { Search } from './Search.jsx';
+import Search from './Search.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
