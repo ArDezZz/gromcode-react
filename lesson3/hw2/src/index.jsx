@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import Profile from './Profile';
-import moment from 'moment';
 
 const userData = {
   firstName: 'James',
