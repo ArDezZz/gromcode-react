@@ -12,12 +12,4 @@ const userData = {
 
 const rootElement = document.querySelector('#root');
 
-ReactDOM.render(
-  <Profile
-    firstName={userData.firstName}
-    lastName={userData.lastName}
-    birthDate={userData.birthDate}
-    birthPlace={userData.birthPlace}
-  />,
-  rootElement,
-);
+ReactDOM.render(<Profile userData={userData} />, rootElement);

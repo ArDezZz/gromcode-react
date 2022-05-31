@@ -6,11 +6,12 @@ const Profile = props => {
   return (
     <>
       <div className="profile__name">
-        {props.firstName} {props.lastName}
+        {props.userData.firstName} {props.userData.lastName}
       </div>
       <div className="profile__birth">
-        Was born {moment(props.birthDate).format('D')} {moment(props.birthDate).format('MMM')}{' '}
-        {moment(props.birthDate).format('YY')} in {props.birthPlace}
+        Was born {moment(props.userData.birthDate).format('D')}{' '}
+        {moment(props.userData.birthDate).format('MMM')}{' '}
+        {moment(props.userData.birthDate).format('YY')} in {props.userData.birthPlace}
       </div>
     </>
   );
