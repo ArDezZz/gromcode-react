@@ -1,23 +1,38 @@
 import React, { Component } from 'react';
-import './counter.scss';
 
 class Counter extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      counter: props.start,
+      counter: 0,
     };
-
-    setInterval(() => {
-      this.setState({
-        counter: this.state.counter + 1,
-      });
-    }, props.interval);
+    this.decrement = this.decrement.bind(this);
   }
 
+  decrement() {
+    this.setState({
+      counter: this.state.counter - 1,
+    });
+  }
+
+  increment = () => {
+    this.setState({
+      counter: this.state.counter + 1,
+    });
+  };
+
   render() {
-    return <div className="counter">{this.state.counter}</div>;
+    return (
+      <div className="counter">
+        <button className="counter__button" onClick={this.decrement}>
+          -
+        </button>
+        <span className="counter__value">{this.state.counter}</span>
+        <button className="counter__button" onClick={this.increment}>
+          +
+        </button>
+      </div>
+    );
   }
 }
 
