@@ -20,8 +20,9 @@ class Status extends Component {
   render() {
     if (!this.state.isOnline) {
       return <Offline />;
+    } else {
+      return <Online />;
     }
-    return <Online />;
   }
 }
 export default Status;
