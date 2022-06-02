@@ -13,7 +13,7 @@ class Status extends Component {
   constructor() {
     super();
     this.state = {
-      isOnline: false,
+      isOnline: true,
     };
   }
 
