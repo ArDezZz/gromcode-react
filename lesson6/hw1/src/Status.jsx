@@ -9,20 +9,13 @@ import Offline from './Offline.jsx';
 //   </div>
 // );
 
-class Status extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isOnline: true,
-    };
-  }
+const Status = props => {
+  const { isOnline } = props;
 
-  render() {
-    if (this.state.isOnline) {
-      return <Online />;
-    } else {
-      return <Offline />;
-    }
+  if (isOnline) {
+    return <Online />;
+  } else {
+    return <Offline />;
   }
-}
+};
 export default Status;
