@@ -13,25 +13,32 @@ body {
   align-items: center;
 }
 
-$blue: #6495ed;
+.users {
+  list-style-type: none;
+  padding: 0;
+}
 
-.message {
-  border: 2px solid $blue;
-  border-radius: 8px;
-  padding: 8px;
-  margin-bottom: 16px;
+.user {
+  margin: 8px;
+  width: 150px;
+  display: flex;
+
+  &__age {
+    font-weight: 700;
+    opacity: 0.5;
+    margin-left: auto;
+  }
 }
 
 .btn {
-  height: 48px;
+  height: 32px;
   color: #fff;
   border-radius: 8px;
-  width: 120px;
+  width: 64px;
   outline: none;
   border: none;
   text-transform: uppercase;
   padding: 8px;
   cursor: pointer;
-  background-color: $blue;
-  margin: 8px;
+  background-color: green;
 }
