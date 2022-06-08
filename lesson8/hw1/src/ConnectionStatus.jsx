@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class ConnectionStatus extends Component {
   state = {
-    status: 'Online',
+    status: 'online',
   };
 
   componentDidMount() {
@@ -12,13 +12,13 @@ class ConnectionStatus extends Component {
 
   offlineHandler = e => {
     this.setState({
-      status: 'Offline',
+      status: 'offline',
     });
   };
 
   onlineHandler = () => {
     this.setState({
-      status: 'Online',
+      status: 'online',
     });
   };
 
