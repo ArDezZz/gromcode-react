@@ -11,8 +11,8 @@ class ConnectionStatus extends Component {
   }
 
   componentWillUnmount() {
-    window.addEventListener('offline', this.offlineHandler);
-    window.addEventListener('online', this.onlineHandler);
+    window.removeEventListener('offline', this.offlineHandler);
+    window.removeEventListener('online', this.onlineHandler);
   }
 
   offlineHandler = () => {
