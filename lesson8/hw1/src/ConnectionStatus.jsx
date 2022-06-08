@@ -11,16 +11,16 @@ class ConnectionStatus extends Component {
   }
 
   offlineHandler = () => {
-    const elem = document.querySelector('.status');
-    elem.classList.add('status_offline');
+    // const elem = document.querySelector('.status');
+    // elem.classList.add('status_offline');
     this.setState({
       status: 'offline',
     });
   };
 
   onlineHandler = () => {
-    const elem = document.querySelector('.status');
-    elem.classList.remove('status_offline');
+    // const elem = document.querySelector('.status');
+    // elem.classList.remove('status_offline');
     this.setState({
       status: 'online',
     });
