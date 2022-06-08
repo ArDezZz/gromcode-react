@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Status extends Component {
+class ConnectionStatus extends Component {
   state = {
     status: 'Online',
   };
@@ -26,4 +26,4 @@ class Status extends Component {
     return <div className="status ">{this.state.status}</div>;
   }
 }
-export default Status;
+export default ConnectionStatus;
