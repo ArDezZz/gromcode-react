@@ -1,2 +1,5 @@
 node_modules
-public
+.idea
+.VS_Code
+package-lock.json
+publick
