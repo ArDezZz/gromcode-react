@@ -10,13 +10,17 @@ class ConnectionStatus extends Component {
     window.addEventListener('online', this.onlineHandler);
   }
 
-  offlineHandler = e => {
+  offlineHandler = () => {
+    const elem = document.querySelector('.status');
+    elem.classList.add('status_offline');
     this.setState({
       status: 'offline',
     });
   };
 
   onlineHandler = () => {
+    const elem = document.querySelector('.status');
+    elem.classList.remove('status_offline');
     this.setState({
       status: 'online',
     });
