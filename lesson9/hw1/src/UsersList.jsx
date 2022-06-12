@@ -5,17 +5,18 @@ import Filter from './Filter';
 class UsersList extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      value: '',
+    };
   }
-  state = {
-    value: '',
-  };
 
   filterUsers = () =>
     this.props.users.filter(user =>
       user.name.toUpperCase().includes(this.state.value.toUpperCase()),
     );
 
-  changeHandler = event => {
+  onChange = event => {
     this.setState = {
       value: event.target.value,
     };
@@ -27,7 +28,7 @@ class UsersList extends Component {
         <Filter
           filterText={this.state.value}
           count={this.filterUsers().length}
-          onChange={this.changeHandler}
+          onChange={this.onChange}
         />
         <ul className="users">
           {this.filterUsers().map(user => (
