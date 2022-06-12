@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import User from './User';
 import Filter from './Filter';
 
-class UsersLists extends Component {
+class UsersList extends Component {
   constructor(props) {
     super(props);
   }
@@ -39,4 +39,4 @@ class UsersLists extends Component {
   }
 }
 
-export default UsersLists;
+export default UsersList;
