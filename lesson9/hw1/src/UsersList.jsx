@@ -16,10 +16,11 @@ class UsersList extends Component {
       user.name.toUpperCase().includes(this.state.filterText.toUpperCase()),
     );
 
-  onChange = event => {
-    this.setState = {
-      filterText: event.target.filterText,
-    };
+  onChangeFilter = event => {
+    console.log(event.target);
+    this.setState({
+      filterText: event.target.value,
+    });
   };
 
   render() {
@@ -27,7 +28,7 @@ class UsersList extends Component {
       <div>
         <Filter
           count={this.filterUsers().length}
-          onChange={this.onChange}
+          onChange={this.onChangeFilter}
           filterText={this.state.filterText}
         />
         <ul className="users">
