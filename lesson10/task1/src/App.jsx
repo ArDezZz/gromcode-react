@@ -21,6 +21,9 @@ class App extends Component {
       );
   };
   render() {
+    if (!this.state.userData) {
+      return null;
+    }
     return (
       <div className="page">
         <header className="header">
