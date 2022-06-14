@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Dialog from './Dialog';
 
-const App = () => {
-  return <div>Hello, React!</div>;
-};
+class App extends Component {
+  render() {
+    return (
+      <div className="app">
+        <Dialog title="some title">
+          <p>Some text</p>
+        </Dialog>
+      </div>
+    );
+  }
+}
 
 export default App;
