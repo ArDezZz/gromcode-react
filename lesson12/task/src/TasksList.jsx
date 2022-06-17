@@ -13,13 +13,60 @@ class TasksList extends Component {
     ],
   };
 
+  onCreate = text => {
+    const { tasks } = this.state;
+    const newTask = {
+      id: Math.random(),
+      text,
+      done: false,
+    };
+
+    const updatedTasks = tasks.concat(newTask);
+    this.setState({
+      tasks: updatedTasks,
+    });
+  };
+
+  handleTaskStatusChange = id => {
+    //1. find task in the list
+    //2.toogle done value
+    //3 save updated list
+    const updatedTasks = this.state.tasks.map(task => {
+      if (task.id === id) {
+        return {
+          ...task,
+          done: !task.done,
+        };
+      }
+      return task;
+    });
+    this.setState({
+      tasks: updatedTasks,
+    });
+  };
+
+  handleTaskDelete = id => {
+    //1.filter tasks
+    //2. updated state
+    const updatedTasks = this.state.tasks.filter(task => task.id !== id);
+    this.setState({
+      tasks: updatedTasks,
+    });
+  };
+
   render() {
+    const sortedLit = this.state.tasks.slice().sort((a, b) => a.done - b.done);
     return (
       <div className="todo-list">
-        <CreateTaskInput />
+        <CreateTaskInput onCreate={this.onCreate} />
         <ul className="list">
-          {this.state.tasks.map(task => (
-            <Task key={task.id} {...task} />
+          {sortedLit.map(task => (
+            <Task
+              key={task.id}
+              {...task}
+              onChange={this.handleTaskStatusChange}
+              onDelete={this.handleTaskDelete}
+            />
           ))}
         </ul>
       </div>
