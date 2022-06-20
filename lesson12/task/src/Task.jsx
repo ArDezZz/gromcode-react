@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const Task = ({ id, done, text, onChange, onDelete }) => {
   const listItemClasses = classNames('list-item', { 'list-item_done': done });
@@ -17,3 +18,14 @@ const Task = ({ id, done, text, onChange, onDelete }) => {
   );
 };
 export default Task;
+
+Task.defaultProps = {
+  done: false,
+  text: '',
+};
+
+Task.PropTypes = {
+  done: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+};

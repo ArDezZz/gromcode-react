@@ -3,8 +3,6 @@ import Task from './Task';
 import CreateTaskInput from './CreateTaskInput';
 import { createTask, fetchTasksList, updateTask, deleteTask } from './tasksGateway';
 
-const baseUrl = 'https://627ea7fc271f386ceffbc3ba.mockapi.io/api/v1/Project';
-
 class TasksList extends Component {
   state = {
     tasks: [],
@@ -78,4 +76,9 @@ class TasksList extends Component {
     );
   }
 }
+
 export default TasksList;
+
+TasksList.defaultProps = {
+  tasks: [],
+};
