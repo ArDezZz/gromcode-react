@@ -24,7 +24,7 @@ Task.defaultProps = {
   text: '',
 };
 
-Task.PropTypes = {
+Task.propTypes = {
   done: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
