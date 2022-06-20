@@ -9,6 +9,24 @@ class TasksList extends Component {
     tasks: [],
   };
 
+  componentDidMount() {
+    this.hetchTasksList();
+  }
+
+  hetchTasksList = () => {
+    fetch(baseUrl)
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then(tasksList => {
+        this.setState({
+          tasks: tasksList,
+        });
+      });
+  };
+
   onCreate = text => {
     //1. + Create task obj
     //2. + Post obj to server
@@ -22,22 +40,12 @@ class TasksList extends Component {
     fetch(baseUrl, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json;utc-8',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(newTask),
     }).then(response => {
       if (response.ok) {
-        fetch(baseUrl)
-          .then(res => {
-            if (res.ok) {
-              return res.json();
-            }
-          })
-          .then(tasksList => {
-            this.setState({
-              tasks: tasksList,
-            });
-          });
+        this.hetchTasksList();
       } else {
         throw new Error('Failed to create task');
       }
@@ -48,26 +56,42 @@ class TasksList extends Component {
     //1. find task in the list
     //2.toogle done value
     //3 save updated list
-    const updatedTasks = this.state.tasks.map(task => {
-      if (task.id === id) {
-        return {
-          ...task,
-          done: !task.done,
-        };
+
+    //1. find task in state
+    //2. create updated task
+    //3. update task on server
+    //4. fetch updated tasks list
+    const { done, text } = this.state.tasks.find(task => task.id === id);
+    const updatedTasks = {
+      text,
+      done: !done,
+    };
+    fetch(`${baseUrl}/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedTasks),
+    }).then(response => {
+      if (response.ok) {
+        this.hetchTasksList();
+      } else {
+        throw new Error('Failed to create task');
       }
-      return task;
-    });
-    this.setState({
-      tasks: updatedTasks,
     });
   };
 
   handleTaskDelete = id => {
     //1.filter tasks
     //2. updated state
-    const updatedTasks = this.state.tasks.filter(task => task.id !== id);
-    this.setState({
-      tasks: updatedTasks,
+    fetch(`${baseUrl}/${id}`, {
+      method: 'DELETE',
+    }).then(response => {
+      if (response.ok) {
+        this.hetchTasksList();
+      } else {
+        throw new Error('Failed to delete task');
+      }
     });
   };
 
