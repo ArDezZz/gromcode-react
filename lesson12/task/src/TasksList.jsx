@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Task from './Task';
 import CreateTaskInput from './CreateTaskInput';
+import { createTask, fetchTasksList, updateTask, deleteTask } from './tasksGateway';
 
 const baseUrl = 'https://627ea7fc271f386ceffbc3ba.mockapi.io/api/v1/Project';
 
@@ -10,21 +11,15 @@ class TasksList extends Component {
   };
 
   componentDidMount() {
-    this.hetchTasksList();
+    this.fetchTasks();
   }
 
-  hetchTasksList = () => {
-    fetch(baseUrl)
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .then(tasksList => {
-        this.setState({
-          tasks: tasksList,
-        });
+  fetchTasks = () => {
+    fetchTasksList().then(tasksList => {
+      this.setState({
+        tasks: tasksList,
       });
+    });
   };
 
   onCreate = text => {
@@ -37,19 +32,7 @@ class TasksList extends Component {
       done: false,
     };
 
-    fetch(baseUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newTask),
-    }).then(response => {
-      if (response.ok) {
-        this.hetchTasksList();
-      } else {
-        throw new Error('Failed to create task');
-      }
-    });
+    createTask(newTask).then(() => this.fetchTasks());
   };
 
   handleTaskStatusChange = id => {
@@ -66,33 +49,14 @@ class TasksList extends Component {
       text,
       done: !done,
     };
-    fetch(`${baseUrl}/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedTasks),
-    }).then(response => {
-      if (response.ok) {
-        this.hetchTasksList();
-      } else {
-        throw new Error('Failed to create task');
-      }
-    });
+
+    updateTask(id, updatedTasks).then(() => this.fetchTasks());
   };
 
   handleTaskDelete = id => {
     //1.filter tasks
     //2. updated state
-    fetch(`${baseUrl}/${id}`, {
-      method: 'DELETE',
-    }).then(response => {
-      if (response.ok) {
-        this.hetchTasksList();
-      } else {
-        throw new Error('Failed to delete task');
-      }
-    });
+    deleteTask(id).then(() => this.fetchTasks());
   };
 
   render() {
