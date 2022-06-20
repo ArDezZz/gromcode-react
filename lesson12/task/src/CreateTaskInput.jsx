@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class CreateTaskInput extends Component {
+class CreateTaskInput extends React.Component {
   state = {
     value: '',
   };
@@ -14,9 +14,7 @@ class CreateTaskInput extends Component {
 
   handleTaskCreate = () => {
     this.props.onCreate(this.state.value);
-    this.setState({
-      value: '',
-    });
+    this.setState({ value: '' });
   };
 
   render() {
@@ -28,7 +26,8 @@ class CreateTaskInput extends Component {
           onChange={this.handleChange}
           className="create-task__input"
         />
-        <button className="btn" onClick={this.handleTaskCreate}>
+
+        <button className=" btn create-task__btn" onClick={this.handleTaskCreate}>
           Create
         </button>
       </div>

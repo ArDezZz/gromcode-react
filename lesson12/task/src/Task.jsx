@@ -2,13 +2,14 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const Task = ({ id, done, text, onChange, onDelete }) => {
+const Task = ({ done, text, onChange, id, onDelete }) => {
   const listItemClasses = classNames('list-item', { 'list-item_done': done });
+
   return (
     <li className={listItemClasses}>
       <input
-        type="checkbox"
         className="list-item__checkbox"
+        type="checkbox"
         defaultChecked={done}
         onChange={() => onChange(id)}
       />
