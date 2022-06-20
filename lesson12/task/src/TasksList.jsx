@@ -2,28 +2,45 @@ import React, { Component } from 'react';
 import Task from './Task';
 import CreateTaskInput from './CreateTaskInput';
 
+const baseUrl = 'https://627ea7fc271f386ceffbc3ba.mockapi.io/api/v1/Project';
+
 class TasksList extends Component {
   state = {
-    tasks: [
-      { text: 'Buy milk', done: false, id: 1 },
-      { text: 'Pick up Tom', done: false, id: 2 },
-      { text: 'Visit party', done: false, id: 3 },
-      { text: 'Visit doctor', done: true, id: 4 },
-      { text: 'Buy meat', done: true, id: 5 },
-    ],
+    tasks: [],
   };
 
   onCreate = text => {
-    const { tasks } = this.state;
+    //1. + Create task obj
+    //2. + Post obj to server
+    //3. + Fetch list from server
+
     const newTask = {
-      id: Math.random(),
       text,
       done: false,
     };
 
-    const updatedTasks = tasks.concat(newTask);
-    this.setState({
-      tasks: updatedTasks,
+    fetch(baseUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;utc-8',
+      },
+      body: JSON.stringify(newTask),
+    }).then(response => {
+      if (response.ok) {
+        fetch(baseUrl)
+          .then(res => {
+            if (res.ok) {
+              return res.json();
+            }
+          })
+          .then(tasksList => {
+            this.setState({
+              tasks: tasksList,
+            });
+          });
+      } else {
+        throw new Error('Failed to create task');
+      }
     });
   };
 
