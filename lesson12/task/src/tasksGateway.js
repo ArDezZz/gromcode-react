@@ -9,7 +9,7 @@ export const createTask = taskData => {
     body: JSON.stringify(taskData),
   }).then(response => {
     if (!response.ok) {
-      this.hetchTasksList();
+      this.fetchTasksList();
       throw new Error('Failed to create task');
     }
   });
