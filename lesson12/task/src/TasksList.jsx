@@ -20,7 +20,6 @@ class TasksList extends React.Component {
     );
   };
 
-  //CREATE!!!!!!!
   onCreate = text => {
     const newTask = {
       text,
@@ -33,7 +32,6 @@ class TasksList extends React.Component {
     // this.setState({ tasks: updatedTasks });
   };
 
-  //UPDATE!!!!!!!!!!!
   handleTaskStatusChange = id => {
     // find tasks in a list
     // toggle done value
@@ -47,7 +45,7 @@ class TasksList extends React.Component {
 
     updatedTask(id, upTask).then(() => this.hetchTasks());
   };
-  //DELETE!!!!!!!!!!
+
   handleTaskDelete = id => {
     deleteTask(id).then(() => this.hetchTasks());
   };
