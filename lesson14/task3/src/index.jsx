@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import Dimension from './Dimensions.jsx';
+import Dimension from './Dimension.jsx';
 
 const rootElement = document.querySelector('#root');
 
