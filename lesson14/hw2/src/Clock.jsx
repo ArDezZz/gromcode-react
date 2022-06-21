@@ -15,7 +15,7 @@ const Clock = ({ location, offset }) => {
       changeOffset(moment(getTimeWithOffset(offset)).format('LTS'));
     }, 1000);
 
-    clearInterval(interval);
+    return () => clearInterval(interval);
   }, []);
 
   return (
