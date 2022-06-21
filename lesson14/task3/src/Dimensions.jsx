@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Dimension = () => {
+const Dimensions = () => {
   const [demensions, setDimension] = useState({
     with: null,
     height: null,
@@ -24,4 +24,4 @@ const Dimension = () => {
   return <div className="dimensions">{`${width}px-${height}px`}</div>;
 };
 
-export default Dimension;
+export default Dimensions;
