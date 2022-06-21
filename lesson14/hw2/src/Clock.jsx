@@ -11,9 +11,11 @@ const Clock = ({ location, offset }) => {
   const [time, changeOffset] = useState(moment(getTimeWithOffset(offset)).format('LTS'));
 
   useEffect(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       changeOffset(moment(getTimeWithOffset(time)).format('LTS'));
     }, 1000);
+
+    return clearInterval(interval);
   }, [time]);
 
   return (
